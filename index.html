@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>For My Valentine, Sri Raghavi ❤️</title>
+<meta name="theme-color" content="#ff4d6d">
+<style>
+  :root{
+    --pink:#ff4d6d;
+    --rose:#ff8fab;
+    --bg:#fff0f5;
+    --deep:#d6336c;
+    --text:#2d2a32;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background: radial-gradient(1200px 800px at 50% -10%, #ffe0ea, #fff0f5 40%, #fff);
+    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+    color:var(--text); overflow:hidden;
+  }
+  .container{
+    min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:24px; text-align:center; position:relative;
+  }
+  h1{
+    margin:6px 0 0; font-weight:800; letter-spacing:.2px; font-size:clamp(28px, 5vw, 44px);
+    background: linear-gradient(90deg, var(--deep), var(--pink));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  h2{ margin:10px 0 18px; font-weight:600; font-size:clamp(18px, 3.5vw, 22px); color:#4a4453}
+  .heart{
+    font-size:64px; filter: drop-shadow(0 6px 12px rgba(255,77,109,.35));
+    animation: beat .6s infinite alternate ease-in-out;
+  }
+  @keyframes beat{ to{ transform: scale(1.18)} }
+
+  .card{
+    margin-top:16px; background:rgba(255,255,255,.75); backdrop-filter: blur(6px);
+    border:1px solid #ffd6e0; border-radius:18px; padding:18px 16px; max-width:680px;
+    box-shadow: 0 10px 30px rgba(214,51,108,.08);
+  }
+  .line{ margin:6px 0; }
+  .highlight{
+    color:var(--deep); font-weight:700; background:linear-gradient(transparent 55%, #ffe3ec 55%);
+    padding:0 6px; border-radius:6px;
+  }
+
+  .btns{ position:relative; margin-top:18px; height:160px; }
+  .btn{
+    position:relative; display:inline-block; padding:14px 24px; border-radius:14px; border:none;
+    font-size:18px; font-weight:700; cursor:pointer; transition:.15s transform, .2s box-shadow, .2s background, .2s color;
+    user-select:none; touch-action:manipulation;
+  }
+  #yesBtn{
+    background:linear-gradient(180deg, #ff5776, #ff3360);
+    color:white; box-shadow: 0 8px 20px rgba(255,77,109,.35);
+  }
+  #yesBtn:hover{ transform: translateY(-2px) scale(1.03) }
+  #noBtn{
+    background:white; color:var(--deep); border:2px solid #ff9bb2;
+    position:absolute; left:50%; top:50%; transform: translate(-50%, -50%);
+    box-shadow: 0 6px 16px rgba(255,155,178,.25);
+  }
+
+  .footer{
+    position:fixed; bottom:10px; left:0; right:0; text-align:center; font-size:12px; color:#6c6a73;
+    pointer-events:none;
+  }
+
+  /* floating hearts */
+  .float-heart{
+    position:fixed; bottom:-20px; font-size:22px; opacity:.9; animation: floatUp 6s linear forwards;
+    filter: drop-shadow(0 6px 12px rgba(255,77,109,.25));
+  }
+  @keyframes floatUp{
+    0%{ transform: translateY(0) translateX(0) scale(1); opacity:1}
+    80%{ opacity:.85}
+    100%{ transform: translateY(-120vh) translateX(var(-- drift, 0)) scale(1.2); opacity:0}
+  }
+
+  /* confetti */
+  .confetti{
+    position:fixed; top:-10px; width:8px; height:14px; opacity:.9; border-radius:2px; animation: drop 2.4s ease-in forwards;
+  }
+  @keyframes drop{
+    0%{ transform: translateY(-5vh) rotate(0deg)}
+    100%{ transform: translateY(110vh) rotate(540deg)}
+  }
+
+  /* music control */
+  .music{
+    position: fixed; right:12px; top:12px; z-index:5; display:flex; gap:8px; align-items:center;
+    background: rgba(255,255,255,.8); border:1px solid #ffd6e0; padding:8px 10px; border-radius:12px;
+    box-shadow:0 6px 16px rgba(214,51,108,.12);
+  }
+  .music button{
+    border:none; background:linear-gradient(180deg,#ffd1dd,#ffc2d3); color:#a5164d; font-weight:700; padding:6px 10px;
+    border-radius:10px; cursor:pointer;
+  }
+
+  /* responsive room for runaway */
+  @media (max-width:480px){
+    .btns{ height:220px }
+  }
+</style>
+</head>
+<body>
+  <div class="music">
+    <span>🎵</span>
+    <button id="musicToggle">Play</button>
+  </div>
+
+  <audio id="bgm" preload="auto" loop>
+    <!-- You can replace with your own small mp3 URL; leaving empty keeps page silent until replaced -->
+    <!-- <source src="YOUR_MUSIC_URL.mp3" type="audio/mpeg" /> -->
+  </audio>
+
+  <div class="container">
+    <div class="heart" aria-hidden="true">❤️</div>
+    <h1>Hey, Sri Raghavi</h1>
+    <h2>You make my world brighter ✨</h2>
+
+    <div class="card" role="group" aria-label="Message">
+      <div class="line">Every time I think of you, my heart does a little <span class="highlight">happy dance</span> 💃</div>
+      <div class="line">So I have a very important question…</div>
+      <div class="line" style="margin-top:8px; font-size:20px; font-weight:700;">Will you be my Valentine?</div>
+
+      <div class="btns" id="playArea">
+        <button id="yesBtn" class="btn" aria-label="Yes">Yes 💖</button>
+        <button id="noBtn" class="btn" aria-label="No">No 😝</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Made with 💗 by someone who can’t stop smiling when he hears your name.</div>
+
+<script>
+(function(){
+  const yes = document.getElementById('yesBtn');
+  const no = document.getElementById('noBtn');
+  const area = document.getElementById('playArea');
+  const bgm = document.getElementById('bgm');
+  const musicToggle = document.getElementById('musicToggle');
+
+  let dodgeCount = 0;
+  let yesScale = 1;
+
+  // Keep hearts floating
+  setInterval(()=>spawnHeart(), 700);
+
+  // Music toggle
+  let playing = false;
+  musicToggle.addEventListener('click', async ()=>{
+    try{
+      if(!playing){
+        await bgm.play();
+        playing = true; musicToggle.textContent = 'Pause';
+      }else{
+        bgm.pause(); playing = false; musicToggle.textContent = 'Play';
+      }
+    }catch(e){
+      // Some browsers block autoplay without user interaction
+      musicToggle.textContent = 'Play';
+    }
+  });
+
+  // Move the NO button in fun ways
+  function moveNo(){
+    const rect = area.getBoundingClientRect();
+    const btn = no.getBoundingClientRect();
+
+    // Random position within area
+    const pad = 10;
+    const x = Math.random() * (rect.width - btn.width - pad*2) + pad;
+    const y = Math.random() * (rect.height - btn.height - pad*2) + pad;
+
+    no.style.left = x + 'px';
+    no.style.top  = y + 'px';
+
+    // Rotate/tilt sometimes
+    const tilt = (Math.random()*30-15);
+    no.style.transform = `translate(-0%, -0%) rotate(${tilt}deg)`;
+
+    // Make YES slightly bigger each dodge
+    dodgeCount++;
+    if(yesScale < 1.8){
+      yesScale += 0.06;
+      yes.style.transform = `scale(${yesScale})`;
+    }
+
+    // After several dodges, make NO smaller and more slippery
+    if(dodgeCount > 6){
+      no.style.transform += ' scale(0.9)';
+      no.style.filter = 'hue-rotate(20deg) brightness(1.05)';
+    }
+  }
+
+  // Trigger move on hover or try-to-click (pointerdown)
+  ['mouseenter', 'touchstart', 'pointerdown'].forEach(evt=>{
+    no.addEventListener(evt, (e)=>{ e.preventDefault(); moveNo(); });
+  });
+
+  // Also randomly drift NO every few seconds
+  setInterval(()=>{ if(document.hidden) return; moveNo(); }, 2500);
+
+  // YES click => confetti + message + WhatsApp
+  yes.addEventListener('click', ()=>{
+    celebrate();
+    setTimeout(()=>{
+      const msg = encodeURIComponent("Yes! I will be your Valentine, Varun ❤️ – Love, Sri Raghavi");
+      // Open WhatsApp share (works on phone)
+      window.location.href = `https://wa.me/?text=${msg}`;
+    }, 1200);
+  });
+
+  // Celebration effects
+  function celebrate(){
+    // burst confetti
+    for(let i=0;i<120;i++){
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      const colors = ['#ff4d6d','#ff8fab','#ffc2d1','#f72585','#b5179e','#7209b7','#4361ee','#4cc9f0','#ffd166','#06d6a0'];
+      c.style.background = colors[i%colors.length];
+      c.style.left = Math.random()*100 + 'vw';
+      c.style.animationDuration = (1.7 + Math.random()*1.2) + 's';
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(), 2600);
+    }
+    // extra hearts
+    for(let i=0;i<12;i++) spawnHeart(true);
+  }
+
+  function spawnHeart(big=false){
+    const h = document.createElement('div');
+    h.className = 'float-heart';
+    h.textContent = ['💗','💖','💘','❤️','💕'][Math.floor(Math.random()*5)];
+    if(big) h.style.fontSize = (26 + Math.random()*22) + 'px';
+    h.style.left = Math.random()*100 + 'vw';
+    h.style.setProperty('--drift', (Math.random()*120 - 60) + 'px');
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(), 6000);
+  }
+
+  // Place NO initially somewhere not overlapping YES
+  moveNo();
+})();
+</script>
+</body>
+</html>
