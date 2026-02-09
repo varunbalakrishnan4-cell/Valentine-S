@@ -183,7 +183,13 @@
     no.style.transform = `translate(-0%, -0%) rotate(${tilt}deg)`;
 
     // Make YES slightly bigger each dodge
-    dodgeCount++;
+    dodgeCount++;// Show funny messages based on attempts
+if (dodgeCount <= 3) {
+  showFunnyPopup("Warning: Heartbreak detected 💔… Just kidding! Click Yes 😘");
+} else if (dodgeCount === 5) {
+  showFunnyPopup("Sri Raghavi, You’re trying so hard… just click Yes daaa 😭❤️");
+}
+
     if(yesScale < 1.8){
       yesScale += 0.06;
       yes.style.transform = `scale(${yesScale})`;
@@ -241,10 +247,27 @@
     document.body.appendChild(h);
     setTimeout(()=>h.remove(), 6000);
   }
-
+// Popup message helper
+function showFunnyPopup(message) {
+  const popup = document.getElementById('funnyPopup');
+  popup.innerHTML = message;
+  popup.style.display = 'block';
+  setTimeout(() => {
+    popup.style.display = 'none';
+  }, 1800);
+}
+``
   // Place NO initially somewhere not overlapping YES
   moveNo();
 })();
 </script>
+  <!-- Funny popup box -->
+<div id="funnyPopup" 
+     style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+            background:white; padding:18px 22px; border-radius:14px; 
+            box-shadow:0 8px 25px rgba(0,0,0,0.15); 
+            font-size:18px; font-weight:600; color:#d6336c; 
+            z-index:9999; text-align:center;">
+</div>
 </body>
 </html>
